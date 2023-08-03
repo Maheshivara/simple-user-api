@@ -1,0 +1,27 @@
+{
+  "name": "simple-user-api",
+  "version": "1.0.0",
+  "description": "A little and simple API to save users info in a SQLite database",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maheshivara/simple-user-api.git"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Maheshivara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maheshivara/simple-user-api/issues"
+  },
+  "homepage": "https://github.com/Maheshivara/simple-user-api#readme",
+  "dependencies": {
+    "@types/node": "^20.4.6",
+    "prisma": "^5.1.1",
+    "typescript": "^5.1.6"
+  }
+}
