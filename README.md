@@ -7,20 +7,21 @@ A user info API builded to understand the concept of a API and learn to use **[P
 1. Configure a dotenv file (.env) with the variable **PORT** with the port number for the API and the location of the db file, Ex:
    ```sh
    PORT="8000"
-   DATABASE_URL:"file:./dev.db"
+   DATABASE_URL="file:./dev.db"
    ```
 2. Install the dependencies with:
    ```console
    npm install
    ```
-4. Run in the terminal the following command to create a db for the first time:
+3. Run in the terminal the following command to create a db for the first time:
    ```console
    npm run create-database
    ```
-5. To compile and start the API use the command:
+4. To compile and start the API use the command:
    ```console
    npm run start-api
    ```
+
 - If you already have compiled you can run the API with:
   ```console
   npm run api
