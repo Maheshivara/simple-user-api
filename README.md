@@ -39,7 +39,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
   - Query Params:
     - email (user email)(required)
     - password (user password)(required)
-    - Example: http://localhost:8000/user/login?email=example@mail.com&password=aRandonPassword
+    - Example: http://localhost:8000/user/login?email=example@mail.com&password=aRandomPassword
   - Response Body:
     A JSON with the data of the user (if pass the authentication), Ex:
     ```javascript
@@ -62,7 +62,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
   - Request Body:
     ```javascript
     {
-        "email":"new-user@mail.com", # is unique
+        "email":"new-user@mail.com", // is unique
         "password": "new-user-password",
         "name": "new-name",
         "username": "new-username",
@@ -93,13 +93,13 @@ A user info API builded to understand the concept of a API and learn to use **[P
   - Request Body:
     ```javascript
     {
-        "email":"user@mail.com", # unchangeable, required
-        "password": "user-password", # required
-        "newPassword":"anotherPassword" # optional
-        "newName": "new-name", # optional
-        "newUsername": "new-username", # optional
-        "newLocation": "Arapiraca/AL, Brasil", # optional
-        "newPhoneNumber": "+XX (XX) X XXXX-XXXX", # optional
+        "email":"user@mail.com", // unchangeable, required
+        "password": "user-password", // required
+        "newPassword":"anotherPassword" // optional
+        "newName": "new-name", // optional
+        "newUsername": "new-username", // optional
+        "newLocation": "Arapiraca/AL, Brasil", // optional
+        "newPhoneNumber": "+XX (XX) X XXXX-XXXX", // optional
     }
     ```
     - The request body **MUST** contain at least one of the optional keys, returning a 400(bad request) error otherwise
