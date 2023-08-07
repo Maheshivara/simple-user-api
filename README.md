@@ -5,19 +5,30 @@ A user info API builded to understand the concept of a API and learn to use **[P
 ## **How To Use**
 
 1. Configure a dotenv file (.env) with the variable **PORT** with the port number for the API and the location of the db file, Ex:
-   > PORT="8000"
-   > DATABASE_URL:"file:./dev.db"
+   ```sh
+   PORT="8000"
+   DATABASE_URL:"file:./dev.db"
+   ```
 2. Install the dependencies with:
-   > npm install
-3. Run in the terminal the following command to create a db for the first time:
-   > npm run create-database
-4. To compile and start the API use the command:
-   > npm run start-api
-
+   ```console
+   npm install
+   ```
+4. Run in the terminal the following command to create a db for the first time:
+   ```console
+   npm run create-database
+   ```
+5. To compile and start the API use the command:
+   ```console
+   npm run start-api
+   ```
 - If you already have compiled you can run the API with:
-  > npm run api
+  ```console
+  npm run api
+  ```
 - To rebuild the database you can use the command:
-  > npm run rebuild-database
+  ```console
+  npm run rebuild-database
+  ```
 
 ## **End Points:**
 
@@ -83,7 +94,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
     ```javascript
     {
         "email":"user@mail.com", # unchangeable, required
-        "password": "new-user-password", # required
+        "password": "user-password", # required
         "newPassword":"anotherPassword" # optional
         "newName": "new-name", # optional
         "newUsername": "new-username", # optional
@@ -91,7 +102,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "newPhoneNumber": "+XX (XX) X XXXX-XXXX", # optional
     }
     ```
-    - The request body **MUST** contain at least one of the optional keys, returning a 400(bad request) error
+    - The request body **MUST** contain at least one of the optional keys, returning a 400(bad request) error otherwise
   - Response Body:
     A JSON with the updated data of the user (if successfully updated), Ex:
     ```javascript
