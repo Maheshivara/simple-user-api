@@ -8,4 +8,7 @@ node_modules/
 .env
 
 # Default db location
+prisma/migrations
 prisma/dev.db
+prisma/dev.db-journal
+
