@@ -13,3 +13,16 @@ const checkByEmail = async (email: string): Promise<Boolean> => {
   const check = user === null ? true : false;
   return check;
 };
+
+//Create new user in database
+const createUser = async (
+  user: Omit<User, "createdAt" | "updatedAt">
+): Promise<Omit<User, "passwordHash"> | null> => {
+  const check = await checkByEmail(user.email);
+  if (check) {
+    return null;
+  }
+  const newUserData = await prisma.user.create({ data: user });
+  const { passwordHash, ...newUser } = newUserData;
+  return newUser;
+};
