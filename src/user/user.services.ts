@@ -28,3 +28,18 @@ const createUser = async (
   const { passwordHash, ...newUser } = newUserData;
   return newUser;
 };
+
+const login = async (
+  user: Pick<User, "email" | "passwordHash">
+): Promise<Omit<User, "passwordHash"> | false | null> => {
+  const userData = await getByEmail(user.email);
+  if (userData === null) {
+    return null;
+  }
+  const check = await bcrypt.compare(user.passwordHash, userData.passwordHash);
+  if (!check) {
+    return false;
+  }
+  const { passwordHash, ...userInfo } = userData;
+  return userInfo;
+};
