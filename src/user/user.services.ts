@@ -44,3 +44,24 @@ export const login = async (
   const { passwordHash, ...userInfo } = userData;
   return userInfo;
 };
+
+//Change user password
+export const updatePassword = async (
+  user: Pick<User, "email" | "passwordHash">,
+  newPassword: string
+): Promise<Omit<User, "passwordHash"> | false | null> => {
+  const userData = await login({
+    email: user.email,
+    passwordHash: user.passwordHash,
+  });
+  if (userData === null || userData === false) {
+    return userData;
+  }
+  newPassword = await bcrypt.hash(newPassword, 10);
+  const updatedUser = await prisma.user.update({
+    where: { email: user.email },
+    data: { passwordHash: newPassword },
+  });
+  const { passwordHash, ...updatedInfo } = updatedUser;
+  return updatedInfo;
+};
