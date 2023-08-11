@@ -1,4 +1,5 @@
 import { prisma } from "../util/client";
+import bcrypt from "bcrypt";
 import { User } from "./type";
 
 //Get user info by email
@@ -22,6 +23,7 @@ const createUser = async (
   if (check) {
     return null;
   }
+  user.passwordHash = await bcrypt.hash(user.passwordHash, 10);
   const newUserData = await prisma.user.create({ data: user });
   const { passwordHash, ...newUser } = newUserData;
   return newUser;
