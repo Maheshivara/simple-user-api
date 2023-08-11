@@ -16,7 +16,7 @@ const checkByEmail = async (email: string): Promise<Boolean> => {
 };
 
 //Create new user in database
-const createUser = async (
+export const createUser = async (
   user: Omit<User, "createdAt" | "updatedAt">
 ): Promise<Omit<User, "passwordHash"> | null> => {
   const check = await checkByEmail(user.email);
@@ -29,7 +29,8 @@ const createUser = async (
   return newUser;
 };
 
-const login = async (
+//Getting user info in database, if exist
+export const login = async (
   user: Pick<User, "email" | "passwordHash">
 ): Promise<Omit<User, "passwordHash"> | false | null> => {
   const userData = await getByEmail(user.email);
