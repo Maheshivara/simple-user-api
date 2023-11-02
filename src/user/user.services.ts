@@ -1,6 +1,6 @@
-import { prisma } from "../util/client";
-import bcrypt from "bcrypt";
-import { User } from "./type";
+import { prisma } from '../util/client';
+import bcrypt from 'bcrypt';
+import { User } from './type';
 
 //Get user info by email
 const getByEmail = async (email: string): Promise<User | null> => {
@@ -17,10 +17,10 @@ const checkByEmail = async (email: string): Promise<Boolean> => {
 
 //Create new user in database
 export const createUser = async (
-  user: Omit<User, "createdAt" | "updatedAt">
-): Promise<Omit<User, "passwordHash"> | null> => {
+  user: Omit<User, 'createdAt' | 'updatedAt' | 'id'>
+): Promise<Omit<User, 'passwordHash'> | null> => {
   const check = await checkByEmail(user.email);
-  if (check) {
+  if (!check) {
     return null;
   }
   user.passwordHash = await bcrypt.hash(user.passwordHash, 10);
@@ -31,8 +31,8 @@ export const createUser = async (
 
 //Getting user info in database, if exist
 export const login = async (
-  user: Pick<User, "email" | "passwordHash">
-): Promise<Omit<User, "passwordHash"> | false | null> => {
+  user: Pick<User, 'email' | 'passwordHash'>
+): Promise<Omit<User, 'passwordHash'> | false | null> => {
   const userData = await getByEmail(user.email);
   if (userData === null) {
     return null;
@@ -47,9 +47,9 @@ export const login = async (
 
 //Change user password
 export const updatePassword = async (
-  user: Pick<User, "email" | "passwordHash">,
+  user: Pick<User, 'email' | 'passwordHash'>,
   newPassword: string
-): Promise<Omit<User, "passwordHash"> | false | null> => {
+): Promise<Omit<User, 'passwordHash'> | false | null> => {
   const userData = await login({
     email: user.email,
     passwordHash: user.passwordHash,
@@ -68,8 +68,8 @@ export const updatePassword = async (
 
 //Change user info
 export const updateUserInfo = async (
-  updatedUserInfo: Omit<User, "passwordHash">
-): Promise<Omit<User, "passwordHash">> => {
+  updatedUserInfo: Omit<User, 'passwordHash' | 'id'>
+): Promise<Omit<User, 'passwordHash'>> => {
   const updatedUser = await prisma.user.update({
     where: { email: updatedUserInfo.email },
     data: updatedUserInfo,
