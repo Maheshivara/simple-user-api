@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
-import { createUser, login } from './user.services';
+import { login, createUser } from './user.services';
 
 export const userRouters = express.Router();
 
