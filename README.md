@@ -98,7 +98,6 @@ A user info API builded to understand the concept of a API and learn to use **[P
     {
         "email":"user@mail.com", // unchangeable, required
         "password": "user-password", // required
-        "newPassword":"anotherPassword" // optional
         "newName": "new-name", // optional
         "newUsername": "new-username", // optional
         "newLocation": "Arapiraca/AL, Brasil", // optional
@@ -114,6 +113,31 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "email":"user@mail.com",
         "name": "new-name",
         "username": "new-username",
+        "birthday": "2023-09-20T19:29:14.765Z",
+        "location": "Arapiraca/AL, Brasil",
+        "phoneNumber": "082000000000", // DDD+ Number
+        "createdAt": "2023-09-20T19:29:14.765Z",
+        "updatedAt": "2023-09-20T19:29:14.765Z",
+    }
+    ```
+- #### {apiUrl}**_/user/password_**
+  - **Change user password**
+  - Request Body:
+    ```javascript
+    {
+        "email":"user@mail.com", // required
+        "password": "user-password", // required
+        "newPassword":"anotherPassword" // required
+    }
+    ```
+  - Response Body:
+    A JSON with the updated data of the user (if successfully updated), Ex:
+    ```javascript
+    {
+        "id": 1,
+        "email":"user@mail.com",
+        "name": "name",
+        "username": "username",
         "birthday": "2023-09-20T19:29:14.765Z",
         "location": "Arapiraca/AL, Brasil",
         "phoneNumber": "082000000000", // DDD+ Number
