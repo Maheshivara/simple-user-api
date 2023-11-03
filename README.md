@@ -104,6 +104,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "password": "user-password", // required
         "newName": "new-name", // optional
         "newUsername": "new-username", // optional
+        "newBirthday": "2023-09-20T19:29:14.765Z", // optional
         "newLocation": "Arapiraca/AL, Brasil", // optional
         "newPhoneNumber": "082000000000", // optional
     }
