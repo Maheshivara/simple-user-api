@@ -68,7 +68,7 @@ export const updatePassword = async (
 
 //Change user info
 export const updateUserInfo = async (
-  updatedUserInfo: Omit<User, 'passwordHash' | 'id'>
+  updatedUserInfo: Omit<User, 'passwordHash' | 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<Omit<User, 'passwordHash'>> => {
   const updatedUser = await prisma.user.update({
     where: { email: updatedUserInfo.email },
