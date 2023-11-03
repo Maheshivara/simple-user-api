@@ -34,7 +34,7 @@ export const login = async (
   user: Pick<User, 'email' | 'passwordHash'>
 ): Promise<Omit<User, 'passwordHash'> | false | null> => {
   const userData = await getByEmail(user.email);
-  if (userData === null) {
+  if (!userData) {
     return null;
   }
   const check = await bcrypt.compare(user.passwordHash, userData.passwordHash);
@@ -54,7 +54,7 @@ export const updatePassword = async (
     email: user.email,
     passwordHash: user.passwordHash,
   });
-  if (userData === null || userData === false) {
+  if (!userData) {
     return userData;
   }
   newPassword = await bcrypt.hash(newPassword, 10);
