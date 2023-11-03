@@ -45,12 +45,13 @@ A user info API builded to understand the concept of a API and learn to use **[P
     A JSON with the data of the user (if pass the authentication), Ex:
     ```javascript
     {
-        "email":"example@mail.com",
+        "id": 1,
+        "email": "example@mail.com",
         "name": "example-name",
         "username": "example-username",
         "birthday": "2023-09-20T19:29:14.765Z",
         "location": "Arapiraca/AL, Brasil",
-        "phoneNumber": "+XX (XX) X XXXX-XXXX",
+        "phoneNumber": "082000000000", // DDD+ Number
         "createdAt": "2023-09-20T19:29:14.765Z",
         "updatedAt": "2023-09-20T19:29:14.765Z",
     }
@@ -63,25 +64,26 @@ A user info API builded to understand the concept of a API and learn to use **[P
   - Request Body:
     ```javascript
     {
-        "email":"new-user@mail.com", // is unique
+        "email": "new-user@mail.com", // is unique
         "password": "new-user-password",
         "name": "new-name",
         "username": "new-username",
         "birthday": "2000-04-20T19:29:14.765Z",
         "location": "Arapiraca/AL, Brasil",
-        "phoneNumber": "+XX (XX) X XXXX-XXXX",
+        "phoneNumber": "082000000000", // DDD+ Number
     }
     ```
   - Response Body:
     A JSON with the data of the user (if successfully created), Ex:
     ```javascript
     {
+        "id": 1,
         "email":"new-user@mail.com",
         "name": "new-name",
         "username": "new-username",
         "birthday": "2023-09-20T19:29:14.765Z",
         "location": "Arapiraca/AL, Brasil",
-        "phoneNumber": "+XX (XX) X XXXX-XXXX",
+        "phoneNumber": "082000000000", // DDD+ Number
         "createdAt": "2023-09-20T19:29:14.765Z",
         "updatedAt": "2023-09-20T19:29:14.765Z",
     }
@@ -100,7 +102,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "newName": "new-name", // optional
         "newUsername": "new-username", // optional
         "newLocation": "Arapiraca/AL, Brasil", // optional
-        "newPhoneNumber": "+XX (XX) X XXXX-XXXX", // optional
+        "newPhoneNumber": "082000000000", // optional
     }
     ```
     - The request body **MUST** contain at least one of the optional keys, returning a 400(bad request) error otherwise
@@ -108,12 +110,13 @@ A user info API builded to understand the concept of a API and learn to use **[P
     A JSON with the updated data of the user (if successfully updated), Ex:
     ```javascript
     {
+        "id": 1,
         "email":"user@mail.com",
         "name": "new-name",
         "username": "new-username",
         "birthday": "2023-09-20T19:29:14.765Z",
         "location": "Arapiraca/AL, Brasil",
-        "phoneNumber": "+XX (XX) X XXXX-XXXX",
+        "phoneNumber": "082000000000", // DDD+ Number
         "createdAt": "2023-09-20T19:29:14.765Z",
         "updatedAt": "2023-09-20T19:29:14.765Z",
     }
