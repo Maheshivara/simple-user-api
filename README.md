@@ -37,10 +37,13 @@ A user info API builded to understand the concept of a API and learn to use **[P
 
 - #### {apiUrl}**_/user/login_**
   - **GET the user info as a login**
-  - Query Params:
-    - email (user email)(required)
-    - password (user password)(required)
-    - Example: http://localhost:8000/user/login?email=example@mail.com&password=aRandomPassword
+  - Request Body:
+    ```javascript
+    {
+        "email": "user@mail.com",
+        "password": "user-password",
+    }
+    ```
   - Response Body:
     A JSON with the data of the user (if pass the authentication), Ex:
     ```javascript
