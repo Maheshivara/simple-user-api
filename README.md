@@ -73,6 +73,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "phoneNumber": "082000000000", // DDD+ Number
     }
     ```
+    - The email, password, birthday and phoneNumber fields are validated by express-validator as email, strongPassword, ISO8601 and phoneNumber respectively
   - Response Body:
     A JSON with the data of the user (if successfully created), Ex:
     ```javascript
@@ -105,6 +106,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
     }
     ```
     - The request body **MUST** contain at least one of the optional keys, returning a 400(bad request) error otherwise
+    - The newBirthday and newPhoneNumber fields are validated by express-validator as ISO8601 and phoneNumber respectively
   - Response Body:
     A JSON with the updated data of the user (if successfully updated), Ex:
     ```javascript
@@ -130,6 +132,7 @@ A user info API builded to understand the concept of a API and learn to use **[P
         "newPassword":"anotherPassword" // required
     }
     ```
+    - The newPassword field is validated by express-validator as strongPassword
   - Response Body:
     A JSON with the updated data of the user (if successfully updated), Ex:
     ```javascript
