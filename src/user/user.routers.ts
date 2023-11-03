@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
-import { login, createUser } from './user.services';
+import { login, createUser, updateUserInfo } from './user.services';
 
 export const userRouters = express.Router();
 
@@ -29,7 +29,8 @@ userRouters.get(
       }
       return response.status(200).json({ user: user });
     } catch (error: any) {
-      return response.status(500).json(error.message);
+      console.error(`User login error:\n${error.message}`);
+      return response.status(500).json({ error: 'Internal API error' });
     }
   }
 );
@@ -66,7 +67,66 @@ userRouters.post(
       }
       return response.status(201).json({ newUser: user });
     } catch (error: any) {
-      return response.status(500).json(error.message);
+      console.error(`User create error:\n${error.message}`);
+      return response.status(500).json({ error: 'Internal API error' });
+    }
+  }
+);
+
+// Update user endpoint
+// Body: email, password, name, userName, birthday, location, phoneNumber
+userRouters.put(
+  '/',
+  body('email').isEmail(),
+  body('password').isString(),
+  body('name').optional().isString(),
+  body('userName').optional().isString(),
+  body('birthday').optional().isISO8601(),
+  body('location').optional().isString(),
+  body('phoneNumber').optional().isMobilePhone('any'),
+  async (request, response) => {
+    try {
+      const result = validationResult(request);
+      if (!result.isEmpty()) {
+        return response.status(400).json({ errors: result.array() });
+      }
+      const userLogin = {
+        email: request.body.email,
+        passwordHash: request.body.password,
+      };
+      const user = await login(userLogin);
+      if (user === false || user === null) {
+        response.set('WWW-Authenticate', 'Basic');
+        return response
+          .status(401)
+          .json({ errors: 'Incorrect password or user not registered' });
+      }
+      if (
+        !request.body.name &&
+        !request.body.userName &&
+        !request.body.birthday &&
+        !request.body.location &&
+        !request.body.phoneNumber
+      ) {
+        return response.status(400).json({ errors: 'No fields to update' });
+      }
+
+      const userUpdatedData = {
+        email: request.body.email,
+        name: request.body.name ?? user.name,
+        userName: request.body.userName ?? user.userName,
+        birthday:
+          request.body.birthday === undefined
+            ? user.birthday
+            : new Date(request.body.birthday),
+        location: request.body.location ?? user.location,
+        phoneNumber: request.body.phoneNumber ?? user.phoneNumber,
+      };
+      const updatedUser = await updateUserInfo(userUpdatedData);
+      return response.status(200).json({ updatedUser: updatedUser });
+    } catch (error: any) {
+      console.error(`User update error:\n${error.message}`);
+      return response.status(500).json({ error: 'Internal API error' });
     }
   }
 );
