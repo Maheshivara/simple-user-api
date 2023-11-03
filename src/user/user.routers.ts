@@ -79,7 +79,7 @@ userRouters.post(
 );
 
 // Update user endpoint
-// Body: email, password, name, userName, birthday, location, phoneNumber
+// Body: email, password, newName, newUserName, newBirthday, newLocation, newPhoneNumber
 userRouters.put(
   '/',
   body('email').isEmail(),
@@ -136,6 +136,8 @@ userRouters.put(
   }
 );
 
+//Update password endpoint
+//Body: email, password, newPassword
 userRouters.put(
   '/password',
   body('email').isEmail(),
